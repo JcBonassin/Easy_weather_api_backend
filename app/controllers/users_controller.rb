@@ -14,6 +14,22 @@ class UsersController < ApplicationController
          end
     end
 
+    def user_locations
+        if 
+        @user = User.find(params[:id])
+        @locations = @user.locations
+       
+        render json: {locations: @locations} 
+
+        else 
+            render json: {
+                status: 404,
+                errors: ['user dont have any location yet']
+              }
+             end
+
+       end
+
 
 def show
        @user = User.find(params[:id])

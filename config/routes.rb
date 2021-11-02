@@ -6,7 +6,13 @@ Rails.application.routes.draw do
   post '/logout',   to: 'sessions#destroy'
   get '/logged_in', to: 'sessions#is_logged_in?' 
   
-  resources :users, only: [:create, :show, :index] 
+  resources :users, only: [:create, :show, :index] do 
+
+  resources :locations, only: [:index]
+
+  end 
+
+  get 'users/:id/user_locations' => 'users#user_locations', :as => :custom_user_posts
  
   resources :locations
 
