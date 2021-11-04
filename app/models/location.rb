@@ -20,16 +20,11 @@ class Location < ApplicationRecord
     def self.location_query(location_query)
         results = Geocoder.search(location_query)
         response = results[0]
-        #results = Geocoder.address(location_query)
     end
-
-    #def address
-    #    [street, city, state, country]
-    #end
-        
+     
     
     def self.search(lat, lon)
-        response = HTTParty.get("https://api.openweathermap.org/data/2.5/onecall?lat=#{lat}&lon=#{lon}&exclude=minutely&appid=#{ENV['API_KEY']}&units=imperial")
+        response = HTTParty.get("https://api.openweathermap.org/data/2.5/onecall?lat=#{lat}&lon=#{lon}&exclude=minutely&appid=#{ENV['API_KEY']}&units=metric")
         data = JSON.parse(response.body) 
     end 
     
